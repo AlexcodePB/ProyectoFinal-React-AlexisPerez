@@ -1,4 +1,3 @@
-/* import { Link } from "react-router-dom"; */
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -9,15 +8,12 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
-
-import CartWidget from "./cart/CartWidget";
+import Badges from "./cart/badge/badge";
 import "../Navbar1/style/Navbar1.css";
 
 const pages = ["Products", "Pricing", "Finish"];
-const settings = ["cart"];
 
 const Navbar1 = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -45,11 +41,11 @@ const Navbar1 = () => {
             sx={{ color: "white", display: { xs: "none", md: "flex" }, mr: 1 }}
           />
           <Typography
-            variant="h5"
             noWrap
             component="a"
             href="/"
             sx={{
+              fontSize: "2em",
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
@@ -100,13 +96,13 @@ const Navbar1 = () => {
             sx={{ color: "white", display: { xs: "flex", md: "none" }, mr: 1 }}
           />
           <Typography
-            variant="h5"
             noWrap
             component="a"
             href=""
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
+              fontSize: "2em",
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
@@ -138,36 +134,12 @@ const Navbar1 = () => {
           </Box>
           {/* en esta linea tengo que meterle al evento click un link */}
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton
-                onClick={handleOpenUserMenu}
-                sx={{ color: "white", p: 0 }}
-              >
-                <CartWidget />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+            <IconButton
+              onClick={handleOpenUserMenu}
+              sx={{ color: "white", p: 0 }}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+              <Badges />
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>
